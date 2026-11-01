@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="A daily AI news magazine: the day's key AI stories as short, tappable snippets.">
+<meta name="theme-color" content="#eef1f6">
+<title>Inference Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,500&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a pocket magazine. Sticky masthead + section rail, one lead spread, then a single column of tappable snippets. */
+:root{
+  --paper:#eef1f6; --sheet:#ffffff; --ink:#151a33; --muted:#5b6380; --rule:#d5dbe7;
+  --accent:#2747d6; --accent-ink:#ffffff; --flag:#b4570a;
+  --s-models:#2747d6; --s-agents:#0f7a63; --s-research:#7a3fb8; --s-business:#a1600b; --s-policy:#b0263f; --s-lead:#151a33;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Literata", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1222; --sheet:#171c31; --ink:#e8ebf5; --muted:#9aa2bf; --rule:#2a3150;
+  --accent:#8aa2ff; --accent-ink:#0e1222; --flag:#f0a35a;
+  --s-models:#8aa2ff; --s-agents:#4fd1ae; --s-research:#c49bff; --s-business:#f0b45a; --s-policy:#ff8a9e; --s-lead:#e8ebf5;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1222; --sheet:#171c31; --ink:#e8ebf5; --muted:#9aa2bf; --rule:#2a3150;
+  --accent:#8aa2ff; --accent-ink:#0e1222; --flag:#f0a35a;
+  --s-models:#8aa2ff; --s-agents:#4fd1ae; --s-research:#c49bff; --s-business:#f0b45a; --s-policy:#ff8a9e; --s-lead:#e8ebf5;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px 8px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.65rem;letter-spacing:-.03em;line-height:1}
+.logo span{color:var(--accent)}
+.nav{display:flex;align-items:center;gap:6px}
+.nav button{font:inherit;font-family:var(--mono);font-size:.8rem;width:36px;height:36px;border-radius:50%;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer}
+.nav button:disabled{opacity:.35;cursor:default}
+.nav button:focus-visible,.chip:focus-visible,.story:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dateline{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rail{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.chip{flex:none;font-family:var(--display);font-weight:500;font-size:.88rem;padding:6px 13px;border-radius:999px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer;display:flex;gap:6px;align-items:center}
+.chip .n{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip[aria-pressed="true"] .n{color:var(--paper);opacity:.7}
+main{display:flex;flex-direction:column;gap:22px;padding-block:20px 40px}
+.lead{display:flex;flex-direction:column;gap:10px;padding-bottom:20px;border-bottom:2px solid var(--ink)}
+.kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.kicker .sec{color:var(--c,var(--accent));font-weight:500}
+.kicker .src{color:var(--muted)}
+.lead h1{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,6.5vw,2.4rem);line-height:1.05;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.lead p{margin:0;font-size:1.06rem}
+.why{font-size:.95rem;color:var(--muted);border-left:3px solid var(--c,var(--accent));padding-left:12px;margin:0}
+.why b{font-family:var(--display);color:var(--ink);font-weight:700}
+.go{font-family:var(--display);font-weight:500;font-size:.9rem;color:var(--accent);text-decoration:none;align-self:flex-start;padding-block:4px}
+.go:hover{text-decoration:underline}
+.brief{background:var(--sheet);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.brief h2,.secthead{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0;font-weight:500}
+.brief ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
+.brief li{padding-left:4px}
+.brief li::marker{font-family:var(--mono);color:var(--accent);font-size:.85em}
+.list{display:flex;flex-direction:column}
+.story{display:flex;flex-direction:column;gap:6px;padding-block:16px;border-top:1px solid var(--rule);cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:inherit;font:inherit;width:100%}
+.story h3{font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.2;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.story .snip{margin:0;color:var(--ink)}
+.story.collapsed .snip{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.story .more{display:flex;flex-direction:column;gap:8px;padding-top:4px}
+.story.read h3{color:var(--muted)}
+.pill{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--flag);color:var(--flag);border-radius:4px;padding:1px 5px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.story.read .dot{background:transparent;border:1px solid var(--rule)}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.toggle{font-family:var(--mono);font-size:.7rem;color:var(--muted);background:none;border:1px solid var(--rule);border-radius:999px;padding:4px 10px;cursor:pointer}
+.status{background:var(--sheet);border-radius:14px;padding:22px 18px;display:flex;flex-direction:column;gap:8px}
+.status h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.status p{margin:0;color:var(--muted)}
+footer{font-family:var(--mono);font-size:.7rem;color:var(--muted);line-height:1.6;border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+@media (prefers-reduced-motion:no-preference){.story .more{animation:open .18s ease-out}@keyframes open{from{opacity:0;transform:translateY(-3px)}}}
+</style>
+<style>html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mast">
+      <div class="logo">Inference<span>.</span></div>
+      <div class="nav">
+        <button id="prev" aria-label="Previous issue" disabled>&larr;</button>
+        <button id="next" aria-label="Next issue" disabled>&rarr;</button>
+      </div>
+    </div>
+    <div class="dateline"><span id="edition">Daily AI briefing</span><span id="issueNo"></span></div>
+    <nav class="rail" id="rail" aria-label="Sections"></nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <main id="main">
+    <section class="status" id="status">
+      <h2>Today's issue is on the press</h2>
+      <p>Each morning the day's AI news from lab newsrooms, papers and major outlets lands here as short, tappable snippets. The first issue appears as soon as it's filed.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+const SECTIONS = [
+  {id:"all", label:"All"},
+  {id:"models", label:"Models", c:"--s-models"},
+  {id:"agents", label:"Agents", c:"--s-agents"},
+  {id:"research", label:"Research", c:"--s-research"},
+  {id:"business", label:"Money", c:"--s-business"},
+  {id:"policy", label:"Policy & Safety", c:"--s-policy"}
+];
+const secMeta = id => SECTIONS.find(s=>s.id===id) || {id, label:id, c:"--accent"};
+let issues = [], idx = 0, filter = "all", open = new Set();
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl = u => /^https:\/\//i.test(u||"") ? u : "";
+function readSet(date){ try{ return new Set(JSON.parse(localStorage.getItem("read:"+date)||"[]")); }catch(e){ return new Set(); } }
+function saveRead(date, set){ try{ localStorage.setItem("read:"+date, JSON.stringify([...set])); }catch(e){} }
+
+function kicker(s){
+  const m = secMeta(s.section);
+  return `<div class="kicker" style="--c:var(${m.c})"><span class="sec">${esc(m.label)}</span><span class="src">${esc(s.source)}</span>${s.singleSource?'<span class="pill">Single source</span>':''}</div>`;
+}
+
+function render(){
+  const issue = issues[idx];
+  $("#prev").disabled = idx >= issues.length-1;
+  $("#next").disabled = idx <= 0;
+  if(!issue){ return; }
+  $("#edition").textContent = issue.edition || issue.date;
+  $("#issueNo").textContent = issue.number ? "No. " + issue.number : "";
+  const stories = Array.isArray(issue.stories) ? issue.stories : [];
+  const lead = stories.find(s=>s.lead) || stories[0];
+  const rest = stories.filter(s=>s!==lead);
+  const read = readSet(issue.date);
+
+  $("#rail").innerHTML = SECTIONS.map(s=>{
+    const n = s.id==="all" ? stories.length : stories.filter(x=>x.section===s.id).length;
+    if(s.id!=="all" && !n) return "";
+    return `<button class="chip" id="chip-${s.id}" data-f="${s.id}" aria-pressed="${filter===s.id}">${esc(s.label)}<span class="n">${n}</span></button>`;
+  }).join("");
+
+  let html = "";
+  const showLead = lead && (filter==="all" || lead.section===filter);
+  if(showLead){
+    const m = secMeta(lead.section);
+    html += `<article class="lead" style="--c:var(${m.c})">${kicker(lead)}
+      <h1>${esc(lead.title)}</h1><p>${esc(lead.snippet)}</p>
+      ${lead.why?`<p class="why"><b>Why it matters.</b> ${esc(lead.why)}</p>`:""}
+      ${safeUrl(lead.url)?`<a class="go" href="${esc(lead.url)}" target="_blank" rel="noopener">Read at ${esc(lead.source)} &rarr;</a>`:""}</article>`;
+  }
+  if(filter==="all" && Array.isArray(issue.brief) && issue.brief.length){
+    html += `<section class="brief"><h2>The day in 60 seconds</h2><ol>${issue.brief.map(b=>`<li>${esc(b)}</li>`).join("")}</ol></section>`;
+  }
+  const list = rest.filter(s=>filter==="all"||s.section===filter);
+  if(list.length){
+    html += `<section><div class="row"><h2 class="secthead">${filter==="all"?"More stories":esc(secMeta(filter).label)}</h2><button class="toggle" id="markall">Mark all read</button></div><div class="list">`;
+    html += list.map(s=>{
+      const isOpen = open.has(s.id), isRead = read.has(s.id), m = secMeta(s.section);
+      return `<div class="story ${isOpen?"":"collapsed"} ${isRead?"read":""}" role="button" tabindex="0" aria-expanded="${isOpen}" data-id="${esc(s.id)}" style="--c:var(${m.c})">
+        <div class="row"><span>${kicker(s)}</span><span class="dot" aria-label="${isRead?"Read":"Unread"}"></span></div>
+        <h3>${esc(s.title)}</h3><p class="snip">${esc(s.snippet)}</p>
+        ${isOpen?`<div class="more">${s.why?`<p class="why"><b>Why it matters.</b> ${esc(s.why)}</p>`:""}${safeUrl(s.url)?`<a class="go" href="${esc(s.url)}" target="_blank" rel="noopener">Read at ${esc(s.source)} &rarr;</a>`:""}</div>`:""}
+      </div>`;
+    }).join("");
+    html += `</div></section>`;
+  }
+  html += `<footer>${issue.coverage?`<span>Sources checked: ${esc(issue.coverage)}</span>`:""}<span>Refreshed every morning around 6 AM Pacific. Snippets are AI-curated summaries; open the source before quoting a figure.</span></footer>`;
+  $("#main").innerHTML = html;
+}
+
+document.addEventListener("click", e=>{
+  const chip = e.target.closest(".chip");
+  if(chip){ filter = chip.dataset.f; render(); window.scrollTo({top:0}); return; }
+  if(e.target.id==="markall"){ const is=issues[idx]; const r=readSet(is.date); (is.stories||[]).forEach(s=>r.add(s.id)); saveRead(is.date,r); render(); return; }
+  if(e.target.closest("a")) return;
+  const st = e.target.closest(".story");
+  if(st){ toggleStory(st.dataset.id); }
+});
+document.addEventListener("keydown", e=>{
+  const st = e.target.closest && e.target.closest(".story");
+  if(st && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); toggleStory(st.dataset.id); }
+});
+function toggleStory(id){
+  const is = issues[idx];
+  if(open.has(id)) open.delete(id); else { open.add(id); const r=readSet(is.date); r.add(id); saveRead(is.date,r); }
+  render();
+  const el = document.querySelector(`.story[data-id="${CSS.escape(id)}"]`); if(el) el.focus({preventScroll:true});
+}
+$("#prev").onclick = ()=>{ if(idx<issues.length-1){ idx++; open.clear(); filter="all"; render(); window.scrollTo({top:0}); } };
+$("#next").onclick = ()=>{ if(idx>0){ idx--; open.clear(); filter="all"; render(); window.scrollTo({top:0}); } };
+
+(async ()=>{
+  const status = msg => { const p = document.querySelector("#status p"); if(p) p.textContent = msg; };
+  try{
+    const res = await fetch("issues/index.json", {cache:"no-cache"});
+    if(!res.ok) throw new Error(res.status);
+    const index = await res.json();
+    const dates = (index.issues||[]).map(i=>i.date).sort().reverse().slice(0,30);
+    const loaded = await Promise.all(dates.map(d=>fetch("issues/"+d+".json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null)));
+    issues = loaded.filter(Boolean);
+    if(issues.length) render(); else status("No issue has been filed yet. The first one lands with the next morning run.");
+  }catch(e){ status("The newsroom can't be reached right now. Check your connection and reload the page."); }
+})();
+</script>
+
+</body>
+</html>
