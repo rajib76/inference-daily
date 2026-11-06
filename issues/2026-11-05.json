@@ -1,0 +1,167 @@
+{
+ "date": "2026-11-05",
+ "number": 2,
+ "edition": "Thursday, November 5, 2026",
+ "brief": [
+  "Anthropic's amended IPO filing shows $17 billion in quarterly revenue against $895 billion in compute commitments.",
+  "Voters pushed back on data centers in the midterms, and OpenAI responded by pledging to pay full power costs.",
+  "AI-driven bug hunting hit core infrastructure: Claude found critical Xen flaws and OpenAI's pipeline produced 948 Linux root exploits."
+ ],
+ "stories": [
+  {
+   "id": "anthropic-amended-s1",
+   "lead": true,
+   "section": "business",
+   "title": "Anthropic's amended IPO filing shows $17B quarter and $895B compute bill",
+   "snippet": "Anthropic's amended S-1 reports about $17 billion in Q3 revenue and a $23.3 billion quarterly net loss. It lists $895.4 billion in compute and infrastructure commitments, $70 billion due within 12 months, ahead of a Nasdaq listing as ANT.",
+   "why": "The first audited look at a frontier lab's economics shows revenue scaling fast but compute obligations dwarfing it, which sets the bar for every AI IPO after it.",
+   "source": "Associated Press",
+   "url": "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/11/02/anthropic-posts-17b-quarterly-revenue-but-losses-continue-in-fresh-ipo-filing"
+  },
+  {
+   "id": "ohio-data-center-votes",
+   "section": "policy",
+   "title": "Ohio voters pass data-center bans and limits in midterm ballot measures",
+   "snippet": "Residents of 18 Ohio municipalities voted on 21 data-center measures on November 3, with at least 14 municipalities passing bans or restrictions. A pro-buildout group spent at least $2.54 million on TV ads in the state.",
+   "why": "Local permission is becoming a hard constraint on AI compute buildout, and siting risk now matters as much as chip supply.",
+   "source": "Fortune",
+   "url": "https://fortune.com/2026/11/04/ohio-data-center-ballot-measures-midterm-elections/"
+  },
+  {
+   "id": "openai-community-compact",
+   "section": "policy",
+   "title": "OpenAI pledges to pay full power costs at its data centers after vote",
+   "snippet": "OpenAI published a community compact saying it will cover full electricity and grid infrastructure costs at sites it owns and drop NDAs with public officials. It cites $80 million for Effingham County, Georgia.",
+   "why": "Labs are now competing on community terms, not just megawatts, to keep data-center projects alive after voter pushback.",
+   "source": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/05/openai-to-pay-for-data-center-power-after-election-shows-ai-concern.html",
+   "singleSource": true
+  },
+  {
+   "id": "xen-claude-cves",
+   "section": "policy",
+   "title": "Xen patches two critical VM-escape flaws credited to Claude",
+   "snippet": "Xen advisory XSA-523 covers CVE-2026-102703 and CVE-2026-102704, grant-copy bugs that let a malicious guest read and write other VMs' memory. Every release from 4.6 on is affected; 4.6 to 4.16 get no patch.",
+   "why": "AI-found bugs in core cloud infrastructure are arriving faster than unsupported versions can be fixed, so patch cadence and upgrade debt now matter more.",
+   "source": "The Hacker News",
+   "url": "https://thehackernews.com/2026/11/xen-hypervisor-flaws-let-one-malicious.html"
+  },
+  {
+   "id": "openai-linux-lpe-pipeline",
+   "section": "policy",
+   "title": "OpenAI's automated pipeline finds 948 Linux privilege-escalation exploits",
+   "snippet": "OpenAI says its model-driven pipeline scanned about 2.8 million kernel lines, reproduced 1,724 vulnerabilities and produced 948 working local root exploits, for roughly $1.2 million in API spend.",
+   "why": "At about $1,300 per bug, offensive-grade vulnerability discovery is cheap enough that defenders should assume attackers can run the same playbook.",
+   "source": "OpenAI",
+   "url": "https://openai.com/index/a-thousand-fewer-paths-to-root/",
+   "singleSource": true
+  },
+  {
+   "id": "flashprove-provable-inference",
+   "section": "research",
+   "title": "Anthropic prototypes FlashProve to prove which model produced a reply",
+   "snippet": "FlashProve uses zkSNARK proofs to show a response came from committed weights without revealing them. On a 400B MoE, one H100 proves about 110 tokens per second, at roughly 70 to 95 times normal GPU cost.",
+   "why": "Verifiable inference could let API buyers and regulators confirm they got the model they paid for, a missing trust layer for hosted AI.",
+   "source": "Anthropic",
+   "url": "https://www.anthropic.com/research/provable-inference"
+  },
+  {
+   "id": "frontierphysics-benchmark",
+   "section": "research",
+   "title": "FrontierPhysics: best agent completes 27% of end-to-end physics research tasks",
+   "snippet": "A new benchmark of 56 tasks built by 42 physicists across nine domains tested 22 models in 26 configurations. No configuration passed more than 46 of 168 rollouts, about 27.4%.",
+   "why": "Claims of autonomous AI scientists still outrun results; full research loops remain far harder than isolated reasoning questions.",
+   "source": "Hugging Face Papers (arXiv 2611.06910)",
+   "url": "https://huggingface.co/papers/2611.06910"
+  },
+  {
+   "id": "ai2-statebench",
+   "section": "research",
+   "title": "Ai2's StateBench shows frontier models lose track of state in long documents",
+   "snippet": "Ai2's four-level benchmark tests how models follow changing variables across long texts. On the hardest general finite problems, frontier models drop to 13% accuracy or lower.",
+   "why": "Agents that edit files or manage workflows depend on tracking state over long contexts, and this is a concrete weak spot to test against.",
+   "source": "Ai2",
+   "url": "https://allenai.org/blog/statebench"
+  },
+  {
+   "id": "cognition-swe-2-flash",
+   "section": "models",
+   "title": "Cognition releases SWE-2 Flash, a cheaper and faster coding model",
+   "snippet": "SWE-2 Flash is a mixture-of-experts model with 276 billion total and 12 billion active parameters, running three times faster at one fifth the price of SWE-2. It scores 20.0 on Terminal-Bench 4.0 versus 27.3.",
+   "why": "Coding-agent vendors are splitting into fast cheap tiers for routine loops and heavy models for hard tasks, mirroring how teams route work.",
+   "source": "Unite.AI",
+   "url": "https://www.unite.ai/cognition-launches-swe-2-flash-for-faster-lower-cost-coding-agents/",
+   "singleSource": true
+  },
+  {
+   "id": "chatgpt-images-2-6",
+   "section": "models",
+   "title": "OpenAI ships ChatGPT Images 2.6 with GIFs and two faster API models",
+   "snippet": "The update adds animated GIFs in ChatGPT and two API models: GPT-Image-2.6 Flare at about six seconds per image and Sunburst with SVG export. OpenAI says users make over 4 billion images a week.",
+   "why": "Vector output and faster generation make image models usable inside design and app pipelines, not just chat.",
+   "source": "OpenAI Developer Community",
+   "url": "https://community.openai.com/t/images-upgraded-introducing-chatgpt-images-2-6/1412901",
+   "singleSource": true
+  },
+  {
+   "id": "apple-siri-ai-developers",
+   "section": "agents",
+   "title": "Apple opens Siri AI to all developers through App Intents",
+   "snippet": "A developer preview in the iOS, iPadOS, macOS and visionOS 27.3 betas lets any app expose content and actions to Siri AI. App Store submissions open in spring; it is unavailable in the EU for now.",
+   "why": "Siri becoming an agent that chains actions across apps makes App Intents a key integration surface for iOS developers.",
+   "source": "Apple Developer",
+   "url": "https://developer.apple.com/news/?id=gdk2umrf"
+  },
+  {
+   "id": "revolut-self-hosted-glm",
+   "section": "agents",
+   "title": "Revolut cuts AI coding costs about 90% with self-hosted GLM models",
+   "snippet": "Revolut made self-hosted GLM models the default coding assistant for about 2,000 engineers, at around a tenth the cost of Claude Code or Codex. It serves GLM on 56 Nvidia B200 GPUs.",
+   "why": "Open-weight models are now good enough for a large enterprise to move default coding traffic off premium APIs, pressuring frontier pricing.",
+   "source": "The Register",
+   "url": "https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345"
+  },
+  {
+   "id": "postman-agent-plugins",
+   "section": "agents",
+   "title": "Postman Desktop quietly installs plugins into Claude Code and Codex",
+   "snippet": "A GitHub issue reports that Postman Desktop 12.33.4 adds its own plugins to Codex and Claude Code and writes a hook trust record into global config without asking the user.",
+   "why": "Third-party apps tampering with coding-agent config is a new supply-chain risk; teams should audit agent hooks and plugin directories.",
+   "source": "GitHub (postmanlabs)",
+   "url": "https://github.com/postmanlabs/postman-app-support/issues/14370",
+   "singleSource": true
+  },
+  {
+   "id": "fal-series-f",
+   "section": "business",
+   "title": "Fal raises $1.3 billion at a $16 billion valuation",
+   "snippet": "Generative media inference platform Fal closed a $1.3 billion Series F led by Bessemer, doubling its April valuation to $16 billion. The money goes to compute after demand forced it to rate limit customers.",
+   "why": "Specialized inference clouds are drawing frontier-lab-scale checks, a sign that serving capacity, not models, is the bottleneck for media apps.",
+   "source": "Tech Funding News",
+   "url": "https://techfundingnews.com/fal-1-3b-series-f-16b-valuation-ai-inference",
+   "singleSource": true
+  },
+  {
+   "id": "anthropic-ap-licensing",
+   "section": "business",
+   "title": "Anthropic signs first publisher licensing deal, with AP election data",
+   "snippet": "Anthropic paid the Associated Press for real-time election results that Claude surfaced during the US midterms, its first content deal with a digital publisher. Terms were not disclosed.",
+   "why": "Anthropic is following OpenAI into paid news licensing, which raises the cost and the quality bar for grounding answers in current events.",
+   "source": "Adweek",
+   "url": "https://www.adweek.com/media/anthropic-licensing-deal-ap-election/",
+   "singleSource": true
+  },
+  {
+   "id": "china-agent-convention",
+   "section": "policy",
+   "title": "Chinese tech giants sign a national self-discipline pact for AI agents",
+   "snippet": "At the Wuzhen World Internet Conference, 20 founding organizations led by state-backed CAICT, including Huawei, Alibaba, Tencent and Xiaomi, released a convention with eight self-regulatory measures for agent development.",
+   "why": "China is setting agent-specific governance norms through industry pacts, a likely precursor to formal rules builders selling there will face.",
+   "source": "China Tech News",
+   "url": "https://www.chinatechnews.com/2026/11/04/132062-chinese-tech-giants-and-state-academy-issue-national-self-discipline-pact-to-govern-ai-agents",
+   "singleSource": true
+  }
+ ],
+ "coverage": "Checked OpenAI, Anthropic, Google DeepMind, Meta, Microsoft, AWS, xAI, Mistral, DeepSeek, Qwen and Moonshot plus AP, Reuters, Bloomberg, Fortune, Adweek, arXiv and Hugging Face papers; Meta, xAI, Mistral and the Chinese labs were quiet, and openai.com, Reuters, CNBC and Business Insider pages could not be fetched directly.",
+ "generatedAt": "2026-11-05T14:13:48+00:00"
+}
