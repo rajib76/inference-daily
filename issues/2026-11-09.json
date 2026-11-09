@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-09",
+  "number": 3,
+  "edition": "Monday, November 9, 2026",
+  "brief": [
+    "Nvidia's board launched an independent probe after reports that CEO Jensen Huang was targeted by Chinese intelligence.",
+    "Open weights had a big week: Mistral released its 1T-parameter Large 4, and Thinking Machines promised Apache 2.0 Inkling 2 weights.",
+    "Agent security is the theme in research and incidents, from leaked Claude Code secrets to criminal agent swarms and signed subagent handoffs."
+  ],
+  "stories": [
+    {
+      "id": "nvidia-board-huang-probe",
+      "lead": true,
+      "section": "policy",
+      "title": "Nvidia board opens independent probe into reported spy targeting of Jensen Huang",
+      "snippet": "Nvidia's board said Nov 8 that independent directors and outside counsel will investigate reports that Huang was targeted by a foreign intelligence effort. It says it has no reason to believe company secrets were compromised; China called the claims unsubstantiated and shares fell about 5% premarket Monday.",
+      "why": "The CEO of the company supplying most AI compute is now a national-security story, which could shape export policy, governance and investor confidence across the AI stack.",
+      "source": "NVIDIA Newsroom",
+      "url": "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors"
+    },
+    {
+      "id": "openai-11b-125t",
+      "section": "business",
+      "title": "OpenAI raises $11 billion at a $1.25 trillion valuation",
+      "snippet": "OpenAI closed an initial $11 billion tranche of a new round valuing it at $1.25 trillion, Bloomberg News reported on Nov 6, as it keeps expanding data-center capacity.",
+      "why": "The raise sets a benchmark for frontier-lab valuations just as Anthropic prepares its own IPO amid investor pushback on price.",
+      "source": "Bloomberg News via GV Wire",
+      "url": "https://gvwire.com/2026/11/06/openai-secures-11-billion-funding-at-1-25-trillion-valuation-bloomberg-news-reports/"
+    },
+    {
+      "id": "metr-anthropic-acceleration",
+      "section": "research",
+      "title": "METR finds Anthropic's AI research pace up about 1.9x since October 2025",
+      "snippet": "An independent METR review of Anthropic, run Aug 12 to Oct 29, estimates its benchmark-score trend accelerated 1.9x (95% CI 1.5x to 2.8x) since October 2025, with AI assistance judged the main driver. METR flags high uncertainty.",
+      "why": "It is the first outside audit trying to measure AI-accelerated AI development at a frontier lab, a key trigger in lab safety policies.",
+      "source": "METR",
+      "url": "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/"
+    },
+    {
+      "id": "mistral-large-4-open",
+      "section": "models",
+      "title": "Mistral releases open weights for 1-trillion-parameter Mistral Large 4",
+      "snippet": "Mistral published weights for Large 4 (\"Le Chonk\"), a natively multimodal 1T-parameter model (repo name indicates 52B active), under a modified MIT license that requires a separate deal for model-as-a-service use. API pricing is $0.70 input and $2.10 output per million tokens.",
+      "why": "A frontier-scale open-weight model from Europe gives builders a self-hostable option, though the hosting carve-out limits resale.",
+      "source": "Mistral AI",
+      "url": "https://mistral.ai/news/mistral-large-4-oss"
+    },
+    {
+      "id": "inkling-2-small",
+      "section": "models",
+      "title": "Thinking Machines launches Inkling 2 Small, promising Apache 2.0 weights",
+      "snippet": "Thinking Machines Lab released Inkling 2 Small, a mixture-of-experts model with 594B total and 17B active parameters, initially closed on its Tinker platform. It plans to publish full weights under Apache 2.0 after external safety testing.",
+      "why": "Another strong Western open-weight contender is coming, with a permissive license and an explicit pre-release red-teaming step.",
+      "source": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/news/inkling-2-small/"
+    },
+    {
+      "id": "grok-api-watermark",
+      "section": "policy",
+      "title": "xAI turns on invisible text watermarks for Grok API output",
+      "snippet": "From Nov 7, text from Grok API models carries a statistical watermark by default, with per-model opt-out for team admins. The change is tied to EU AI Act Article 50 labeling duties.",
+      "why": "Builders on Grok should check downstream pipelines; watermarking is becoming a default compliance layer for model APIs ahead of EU deadlines.",
+      "source": "xAI Docs",
+      "url": "https://docs.x.ai/docs/guides/output-watermarking"
+    },
+    {
+      "id": "microsoft-apm",
+      "section": "agents",
+      "title": "Microsoft open-sources APM, a package manager for agent skills and MCP servers",
+      "snippet": "Agent Package Manager uses one apm.yml manifest to declare skills, prompts, instructions, plugins and MCP servers, then installs them across agent tools such as GitHub Copilot, Claude Code and Cursor. It is MIT licensed.",
+      "why": "Agent configuration is getting the same dependency management, lockfiles and install policy that code has, which helps teams share and audit agent setups.",
+      "source": "GitHub (Microsoft)",
+      "url": "https://github.com/microsoft/apm"
+    },
+    {
+      "id": "perplexity-teammates",
+      "section": "agents",
+      "title": "Perplexity launches Teammates, always-on agents for ongoing work",
+      "snippet": "Perplexity's Teammates are persistent agents with roles and memory that keep working on long-running tasks and plug into Slack. They require the $200-a-month Max plan.",
+      "why": "Consumer AI companies are moving from chat to standing agent employees, competing directly with OpenAI and Anthropic for workplace automation.",
+      "source": "TechRepublic",
+      "url": "https://www.techrepublic.com/article/news-perplexity-teammates-ai-agents-pricing-features/"
+    },
+    {
+      "id": "deepseek-harness-dau",
+      "section": "agents",
+      "title": "DeepSeek's Harness agent app reaches 1.54 million daily users",
+      "snippet": "DeepSeek disclosed daily active users for its Harness agent platform for the first time: 1.54 million, up more than a million in a month, with about 92 trillion tokens processed per day.",
+      "why": "A Chinese open-model lab now runs one of the largest agent platforms, showing agent usage scaling fast outside US ecosystems.",
+      "source": "Yicai Global",
+      "url": "https://www.yicaiglobal.com/news/deepseek-harness-releases-dau-data-for-first-time-topping-15-million"
+    },
+    {
+      "id": "alexa-text-shopping",
+      "section": "agents",
+      "title": "Amazon lets shoppers text Alexa to search, add to cart and buy",
+      "snippet": "Alexa for Shopping can now be reached by text message, starting with an invitation-only group of US customers and expanding to millions in coming weeks. Amazon says 400 million customers used it in the past year.",
+      "why": "Agentic commerce is moving into plain messaging channels, a pattern other retailers and agent builders will copy.",
+      "source": "About Amazon",
+      "url": "https://www.aboutamazon.com/news/retail/alexa-for-shopping-text-to-shop"
+    },
+    {
+      "id": "claude-code-secrets-leak",
+      "section": "policy",
+      "title": "Claude Code permission files leak 2,539 secrets on public GitHub",
+      "snippet": "Apiiro found Claude Code's \"don't ask again\" settings files saved full approved commands, exposing 2,539 secrets across 1,994 public repos, including 379 database passwords and 23 AWS keys.",
+      "why": "Agent config files are a new secret-leak surface; teams should gitignore .claude local settings and scan for exposed credentials.",
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html"
+    },
+    {
+      "id": "checkpoint-artex",
+      "section": "policy",
+      "title": "Check Point details ARTEX, criminal campaigns run by autonomous AI agents",
+      "snippet": "Researchers found 1,608 live ARTEX panels. In one campaign, an operator's agents burned 36 billion tokens over two weeks and obtained over 300 Apple code-signing certificates, three of them valid.",
+      "why": "Autonomous offensive agents are now cheap commodity tooling for criminals, raising the bar for defenders and for model misuse monitoring.",
+      "source": "Check Point Research",
+      "url": "https://research.checkpoint.com/2026/hacking-on-autopilot-inside-artex-cybercrime-campaigns/"
+    },
+    {
+      "id": "heelo-agent-primitives",
+      "section": "research",
+      "title": "HEELO paper: reusable agent primitives sharply lift real-task completion",
+      "snippet": "Researchers expose \"agent-native primitives\" through an MCP server. Codex on Terminal-Bench 4.0 rose from 37.3% to 55.5%, and on 46 real tasks Claude Code went from 9 to 39 completions.",
+      "why": "Harness design, not just model choice, can more than quadruple agent success on real work, a direct lesson for agent builders.",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2611.07461"
+    },
+    {
+      "id": "signed-handoffs",
+      "section": "research",
+      "title": "Signed handoff manifests cut unsafe multi-agent commits from 69% to 9%",
+      "snippet": "Signing requirement manifests between orchestrator and subagents cut unsafe commits under attack from 69.4% to 9.0% on Qwen3-8B. But injection before signing raised violations to 37.5%, which the signature then authenticated.",
+      "why": "Cryptographic handoffs protect requirements in transit but not at extraction, so multi-agent systems still need input-side defenses.",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2611.07483"
+    },
+    {
+      "id": "shield-echodyne",
+      "section": "business",
+      "title": "Shield AI to buy Echodyne for $5.3 billion and raise $2.5 billion",
+      "snippet": "Defense-AI firm Shield AI will acquire radar maker Echodyne in a deal valued at $5.3 billion and raise $2.5 billion, including a $1 billion Series H at a $28.8 billion post-money valuation. Closing is expected in early 2027.",
+      "why": "Defense autonomy is drawing some of the largest private AI rounds, consolidating sensing and autonomy software under one roof.",
+      "source": "Shield AI",
+      "url": "https://shield.ai/shield-to-acquire-echodyne-in-a-transaction-valued-at-5-3-billion-and-raise-2-5-billion-at-a-28-8-billion-valuation"
+    },
+    {
+      "id": "google-crusoe-wyoming",
+      "section": "business",
+      "title": "Google takes over Crusoe's unfinished Wyoming data-center project",
+      "snippet": "Crusoe sold its southeastern Wyoming campus project, planned to scale toward 10 gigawatts, to Google after reported cost and timeline concerns. Google plans a $17 billion investment in the site; the price was not disclosed.",
+      "why": "Hyperscalers are absorbing struggling neocloud builds, concentrating AI power capacity in fewer hands.",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/"
+    }
+  ],
+  "coverage": "Checked OpenAI, Anthropic, Google DeepMind, Meta, Microsoft, AWS, xAI, Mistral, DeepSeek, Qwen and Moonshot plus METR, arXiv, Hugging Face papers, TechCrunch and AP; Google, Meta, Qwen and Moonshot had no major new releases, and Reuters, The Verge, CNBC, Axios, AP, SCMP and the xAI docs page could not be fetched directly.",
+  "generatedAt": "2026-11-09T14:20:40Z"
+}
